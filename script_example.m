@@ -1,6 +1,6 @@
 %% Multiple file examplee
-filepath = 'F:\Hyungsub\Alginate_total'; % file path example
-filelist = dir(fullfile(filepath, '*\*\*.mcd')); % make file list
+filepath = '.\Test_files'; % file path example
+filelist = dir(fullfile(filepath, '*.mcd')); % make file list
 
 as = analysisSession(filelist); % object construction
 as.loadAnalysisConfig(''); % load analysis configuration

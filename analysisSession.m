@@ -270,27 +270,29 @@ classdef analysisSession < handle
     
     methods (Static)
         function loadLibrary()
-            libraryPath = [".\mcd\nsMCDlibrary64.dll", ...
-            "..\mcd\nsMCDlibrary64.dll", ...
-            "C:\Program Files\MATLAB\R2020a\toolbox\mcd\nsMCDlibrary64.dll", ...
-            "D:\Program Files\MATLAB\R2020a\toolbox\mcd\nsMCDlibrary64.dll", ...
-            "C:\Program Files\MATLAB\R2021a\toolbox\mcd\nsMCDlibrary64.dll", ...
-            "D:\Program Files\MATLAB\R2021a\toolbox\mcd\nsMCDlibrary64.dll"];
-    
-            stat = 0;
-            for ii=1:length(libraryPath)
-                if exist(libraryPath(ii), 'file') == 2
-                    stat = 1;
-                    path = libraryPath(ii);
-                    break
-                end
-            end
+%             libraryPath = [".\mcd\nsMCDlibrary64.dll", ...
+%             "..\mcd\nsMCDlibrary64.dll", ...
+%             "C:\Program Files\MATLAB\R2020a\toolbox\mcd\nsMCDlibrary64.dll", ...
+%             "D:\Program Files\MATLAB\R2020a\toolbox\mcd\nsMCDlibrary64.dll", ...
+%             "C:\Program Files\MATLAB\R2021a\toolbox\mcd\nsMCDlibrary64.dll", ...
+%             "D:\Program Files\MATLAB\R2021a\toolbox\mcd\nsMCDlibrary64.dll"];
+%     
+%             stat = 0;
+%             for ii=1:length(libraryPath)
+%                 if exist(libraryPath(ii), 'file') == 2
+%                     stat = 1;
+%                     libpath = libraryPath(ii);
+%                     break
+%                 end
+%             end
+            libfile = 'nsMCDlibrary64.dll';
+            libpath = which(libfile);
 
-            if stat == 0
+            if isempty(libpath)
                 error('LOADLIBRARY: library not found')
             end
 
-            ns = ns_SetLibrary(char(path));
+            ns = ns_SetLibrary(char(libpath));
             if ns ~= 0
                 error('LOADLIBRARY: library load failed');
             end

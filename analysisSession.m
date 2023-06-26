@@ -13,6 +13,8 @@ classdef analysisSession < handle
         analysisSave
         analysisVisual
         
+        intervalConfig
+        
         savepath
     end
     
@@ -22,6 +24,7 @@ classdef analysisSession < handle
             obj.filenum = length(filelist);
             
             obj.config = readtable('analysis_base.xlsx');
+            obj.intervalConfig = {};
             analysisSession.loadLibrary();
         end
         
@@ -80,6 +83,12 @@ classdef analysisSession < handle
                 filepath = fullfile(obj.filelist(ii).folder, obj.filelist(ii).name);
                 myvalue = obj.fileLoad(filepath);
                 myvalue.savepath = obj.savepath;
+                
+                for jj=1:length(obj.intervalConfig)
+                    intvConfig = obj.intervalConfig{jj};
+                    myvalue.buildInterval(intvConfig.name, intvConfig.manner, intvConfig.input1,  intvConfig.input2);
+                end
+                
                 metas{ii} = myvalue.meta;
                 for jj=1:obj.analysisnum
                     analysisName = obj.analysisname{jj};
@@ -265,6 +274,14 @@ classdef analysisSession < handle
             end
             
             close(ppt);
+        end
+        
+        function generateInterval(obj, name, manner, input1, input2)
+            intvConfig.name = name;
+            intvConfig.manner = manner;
+            intvConfig.input1 = input1;
+            intvConfig.input2 = input2;
+            obj.intervalConfig{end + 1} = intvConfig;
         end
     end
     

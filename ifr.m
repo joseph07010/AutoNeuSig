@@ -3,6 +3,7 @@ function [rst] = ifr(chValues, params)
     inputidx = 1;
     binsize = 0.1; % sec
     display = true;
+    interval = [];
     while true
         if inputidx > length(params)
             break
@@ -15,6 +16,9 @@ function [rst] = ifr(chValues, params)
             case 'display'
                 inputidx = inputidx + 1;
                 display = params{inputidx};
+            case 'interval'
+                inputidx = inputidx + 1;
+                interval = params{inputidx};
             otherwise
                 error('IFR: Input error');
         end
@@ -26,13 +30,32 @@ function [rst] = ifr(chValues, params)
     if chValues.activeChanneled
         chs = chs(chValues.active);
     end
+    
+    if ~isempty(interval)
+        intvs = chValues.getInterval(interval);
+        numintv = size(intvs);
+    end
+    
     histx = 0:binsize:chValues.timespan;
     IFR = zeros(length(chs), 1);
     
+    
     for ii=1:length(chs)
-        spks = chValues.getTimestampCh(chs(ii));
-        spkrate = histcounts(spks, histx);
-        IFR(ii) = mean(spkrate(spkrate > 0));
+        ts = chValues.getTimestampCh(chs(ii));
+        if ~isempty(interval)
+            flags = false(size(ts));
+            for jj=1:numintv(1)
+                flags = flags | (ts >= intvs(ii, 1) & ts < intvs(ii, 2));
+            end
+            ts = ts(flags);
+        end
+        
+        spkrate = histcounts(ts, histx);
+        if nnz(spkrate > 0) == 0
+            IFR(ii) = 0;
+        else
+            IFR(ii) = mean(spkrate(spkrate > 0));
+        end
     end
     
     rst.summary = [mean(IFR) std(IFR) length(IFR)];

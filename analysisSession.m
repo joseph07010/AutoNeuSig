@@ -70,6 +70,9 @@ classdef analysisSession < handle
         end
         
         function analyze(obj)
+            if isempty(obj.filelist)
+                error('ANALYZE: There are no files to analyze')
+            end
             nowstr = datestr(now, 'yymmdd-HHMM');
             obj.savepath = fullfile('.', nowstr);
             [status, msg] = mkdir(obj.savepath);
@@ -276,7 +279,7 @@ classdef analysisSession < handle
             close(ppt);
         end
         
-        function generateInterval(obj, name, manner, input1, input2)
+        function buildInterval(obj, name, manner, input1, input2)
             intvConfig.name = name;
             intvConfig.manner = manner;
             intvConfig.input1 = input1;

@@ -31,3 +31,20 @@ https://sites.google.com/site/bctnet/
 
 **Example**
 'script_example.m'
+
+# connAnalyze
+Connectivity analysis tool using NeuroExplorer
+
+이 Python 기반의 connectivity 분석 toolbox는 NeuroExplorer를 이용해서 cross-correlation을 계산할 수 있게 만들었습니다.
+반복적으로 cross-corrolgram을 계산하고, 저장할 수 있게 설계되었습니다.
+
+**Prerequisite**
+
+NeuroExplorer 5 버젼 이상에서 테스트되었습니다.
+데이터 계산을 위해서 NeuroExplorer 5의 설치가 필수적입니다.
+
+1. 설치된 NeuroExplorer를 켜둔 상태에서 View > Options..을 활성화합니다.
+2. Python tab에서 'Options for cotrolling NeuroExplorer by running Python in external program...' 버튼을 누릅니다.
+3. 팝업에서 'Start Server Now' 버튼을 누르고, TCP server가 listening 상태가 되었는지 확인합니다.
+
+이후 toolbox를 이용해서 connectivity 분석을 진행할 수 있습니다.

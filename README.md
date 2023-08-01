@@ -77,13 +77,16 @@ Installation of NeuroExplorer 5 is required for data calculation.
 데이터 계산을 위해서 NeuroExplorer 5의 설치가 필수적입니다.)
 
 1. With the installed NeuroExplorer turned on, click View > Options... and activate it.
+
+(설치된 NeuroExplorer를 켜둔 상태에서 View > Options..을 활성화합니다.)
+
 2. On the Python tab, click the 'Options for cotrolling NeuroExplorer by running Python in external program...' button.
+
+(Python tab에서 'Options for cotrolling NeuroExplorer by running Python in external program...' 버튼을 누릅니다.)
+  
 3. Click the 'Start Server Now' button in the popup, and make sure the TCP server is listening.
 
-
-1. 설치된 NeuroExplorer를 켜둔 상태에서 View > Options..을 활성화합니다.
-2. Python tab에서 'Options for cotrolling NeuroExplorer by running Python in external program...' 버튼을 누릅니다.
-3. 팝업에서 'Start Server Now' 버튼을 누르고, TCP server가 listening 상태가 되었는지 확인합니다.
+(팝업에서 'Start Server Now' 버튼을 누르고, TCP server가 listening 상태가 되었는지 확인합니다.)
 
 You can then use the toolbox to analyze connectivity.
 

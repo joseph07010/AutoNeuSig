@@ -91,3 +91,10 @@ Installation of NeuroExplorer 5 is required for data calculation.
 You can then use the toolbox to analyze connectivity.
 
 (이후 toolbox를 이용해서 connectivity 분석을 진행할 수 있습니다.)
+
+
+# If you publish using this analysis tool, please cite the paper below.
+이 분석 툴을 이용하여 출판하는 경우, 아래의 논문을 인용하세요.
+
+H Lee, GS Lee, Y Nam*, "Connectivity and network burst properties of in-vitro neuronal networks induced by a clustered structure with alginate hydrogel patterning", Biomedical Engineering Letters
+DOI: https://doi.org/10.1007/s13534-023-00289-5
